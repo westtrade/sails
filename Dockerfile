@@ -13,11 +13,15 @@ LABEL com.westtrade.build-date=$BUILD_DATE \
 	com.westtrade.vcs-type="Git" \
 	com.westtrade.vcs-url="https://github.com/westtrade/sails"
 
+ENV NODE_ENV='development'
 WORKDIR /etc/server
 
-RUN npm i nodemon -g
+RUN npm i npm-install-missing nodemon -g 
 
-COPY ./entrypoint.sh ./entrypoint.sh
+COPY ./entrypoint.sh /entrypoint.sh
 EXPOSE 1337
 
-ENTRYPOINT ./entrypoint.sh
+VOLUME ["/etc/server/node_modules"]
+
+ENTRYPOINT /entrypoint.sh
+
