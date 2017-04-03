@@ -16,7 +16,11 @@ LABEL com.westtrade.build-date=$BUILD_DATE \
 ENV NODE_ENV='development'
 WORKDIR /etc/server
 
-RUN npm i npm-install-missing nodemon -g 
+RUN npm i sails nodemon -g 
+
+RUN apk update && \
+    apk install --no-cache git
+
 
 COPY ./entrypoint.sh /entrypoint.sh
 EXPOSE 1337
