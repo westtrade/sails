@@ -19,7 +19,7 @@ WORKDIR /etc/server
 RUN npm i sails nodemon -g 
 
 RUN apk update && \
-    apk install --no-cache git
+    apk add --no-cache git
 
 
 COPY ./entrypoint.sh /entrypoint.sh
